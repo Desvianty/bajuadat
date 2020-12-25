@@ -25,7 +25,7 @@ class Baju_adat extends RestController
   {
     parent::__construct();
     $this->load->model('Bajuadat_model', 'bajuadat');
-    $this->methods['index_get']['limit'] = 2; 
+    $this->methods['index_get']['limit'] = 50; 
   }
 
   public function index_get()
@@ -35,9 +35,9 @@ class Baju_adat extends RestController
       $p = $this->get('page', true);
       $p = (empty($p) ? 1 : $p);
       $total_data = $this->bajuadat->count();
-      $total_page = ceil($total_data / 5);
-      $start = ($p - 1) * 5;
-      $list = $this->bajuadat->get(null, 5, $start);
+      $total_page = ceil($total_data / 20);
+      $start = ($p - 1) * 20;
+      $list = $this->bajuadat->get(null, 20, $start);
       if ($list) {
         $data = [
           'status' => true,
